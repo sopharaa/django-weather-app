@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body{
+            margin: 0;
+            line-height: 1.6;
+        }
+        nav{
+            background: #333;
+            padding: 1rem;
+
+        }
+        nav a{
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;}
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container ">
+           <a href="{% url 'home' %}"> Weather App</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div style="padding: 10px; margin: 10px 0; border-radius: 5px; {% if message.tags == 'success' %}background-color: #d4edda; color: #155724;{% elif message.tags == 'warning' %}background-color: #fff3cd; color: #856404;{% elif message.tags == 'error' %}background-color: #f8d7da; color: #721c24;{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %} 
+        {% block content %}
+            
+        {% endblock content %}
+            
+    </div>
+</body>
+</html>
